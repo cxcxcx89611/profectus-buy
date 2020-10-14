@@ -42,7 +42,7 @@
       </div>
       <div class="col-md-6">
         <button id="save-btn" type="button" class="btn btn-primary" v-on:click="save()">
-          保存
+          save
         </button>
       </div>
     </div>
@@ -64,15 +64,10 @@
       let _this = this;
       _this.list();
       _this.allCategory();
-      // sidebar激活样式方法一
       // this.$parent.activeSidebar("system-resource-sidebar");
 
     },
     methods: {
-      /**
-       * 列表查询
-       */
-
       allCategory() {
         let _this = this;
         Loading.show();
