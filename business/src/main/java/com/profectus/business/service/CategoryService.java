@@ -1,11 +1,11 @@
 package com.profectus.business.service;
 
-import com.profectus.business.model.Category;
+import com.profectus.business.dto.CategoryDto;
 
 import java.util.List;
 
 public interface CategoryService {
 
-    List<Category> getCategoryList();
+    List<CategoryDto> getCategoryList();
 
 }
