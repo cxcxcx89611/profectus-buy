@@ -27,10 +27,10 @@ public class Product {
     @JoinColumn(name="category_id")
     private Category category;
 
-    @OneToMany(mappedBy = "Purchased",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "product",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
     private List<Purchased> purchasedList;
 
-    @OneToMany(mappedBy = "Sold",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "product",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
     private List<Sold> soldList;
 
     @Override

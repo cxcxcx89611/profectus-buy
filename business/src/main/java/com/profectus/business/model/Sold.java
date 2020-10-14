@@ -11,6 +11,8 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Entity
+@Table(name="SOLD")
 @SuppressWarnings("all")
 public class Sold {
 
