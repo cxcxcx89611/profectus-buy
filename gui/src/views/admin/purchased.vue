@@ -15,9 +15,9 @@
     <table id="simple-table" class="table  table-bordered table-hover">
       <thead>
       <tr>
+        <th>product name</th>
         <th>unique product code</th>
         <th>category</th>
-        <th>name</th>
         <th>purchased date</th>
         <th>purchased price</th>
         <th>purchased quantity</th>
@@ -26,12 +26,12 @@
 
       <tbody>
       <tr v-for="purchasedItem in purchasedItems">
-        <td>{{purchasedItem.id}}</td>
-        <td>{{purchasedItem.category}}</td>
-        <td>{{purchasedItem.name}}</td>
-        <td>{{purchasedItem.purchaseDate}}</td>
-        <td>{{purchasedItem.purchasePrice}}</td>
-        <td>{{purchasedItem.purchaseQuantity}}</td>
+        <td>{{purchasedItem.product.productName}}</td>
+        <td>{{purchasedItem.product.id}}</td>
+        <td>{{purchasedItem.product.category.categoryName}}</td>
+        <td>{{ purchasedItem.purchasedDate}}</td>
+        <td>{{purchasedItem.purchasedPrice}}</td>
+        <td>{{purchasedItem.purchasedQuantity}}</td>
       </tr>
       </tbody>
     </table>
@@ -39,39 +39,36 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
             <h4 class="modal-title">Purchased Item Form</h4>
           </div>
           <div class="modal-body">
             <form class="form-horizontal">
               <div class="form-group">
-                <label class="col-sm-2 control-label">category</label>
+                <label class="col-sm-2 control-label">product name</label>
                 <div class="col-sm-10">
-                  <input v-model="purchasedItem.category" class="form-control">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label">name</label>
-                <div class="col-sm-10">
-                  <input v-model="purchasedItem.name" class="form-control">
+                  <select v-model="purchasedItem.product" class="form-control">
+                    <option v-for="v in products" v-bind:value="v">{{v.productName}}</option>
+                  </select>
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-sm-2 control-label">purchased date</label>
                 <div class="col-sm-10">
-                  <input v-model="purchasedItem.purchaseDate" type="date"/>
+                  <input v-model="purchasedItem.purchasedDate" type="date"/>
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-sm-2 control-label">purchased price</label>
                 <div class="col-sm-10">
-                  <input v-model="purchasedItem.purchasePrice" class="form-control">
+                  <input v-model="purchasedItem.purchasedPrice" class="form-control">
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-sm-2 control-label">purchased quantity</label>
                 <div class="col-sm-10">
-                  <input v-model="purchasedItem.purchaseQuantity" class="form-control">
+                  <input v-model="purchasedItem.purchasedQuantity" class="form-control">
                 </div>
               </div>
             </form>
@@ -93,33 +90,65 @@
       return {
         purchasedItem: {},
         purchasedItems: [],
+        categorys: [],
+        products: [],
       }
     },
     mounted: function () {
       let _this = this;
 
-      // _this.list();
+      _this.list();
 
-      this.$parent.activeSidebar("business-member-sidebar");
+      _this.allProducts();
+
+      // this.$parent.activeSidebar("business-member-sidebar");
 
     },
     methods: {
 
+      allProducts() {
+        let _this = this;
+        Loading.show();
+        _this.$ajax.get(process.env.VUE_APP_SERVER + '/profectus-buy/business/product/all').then((response) => {
+          Loading.hide();
+          let resp = response.data;
+          _this.products = resp.content;
+        })
+      },
+
       add() {
         let _this = this;
-        _this.teacher = {};
+        _this.purchasedItem = {};
         $("#form-modal").modal("show");
       },
 
       list() {
+        console.log("send request");
         let _this = this;
         Loading.show();
-        _this.$ajax.get(process.env.VUE_APP_SERVER + '/business/item/getPurchasedItems').then((response) => {
+        _this.$ajax.get(process.env.VUE_APP_SERVER + '/profectus-buy/business/purchased/all').then((response) => {
           Loading.hide();
           let resp = response.data;
-          _this.purchased = resp.content.list;
+          _this.purchasedItems = resp.content;
         })
-      }
+        console.log("send request end");
+      },
+
+      save() {
+        let _this = this;
+        Loading.show();
+        _this.$ajax.post(process.env.VUE_APP_SERVER + '/profectus-buy/business/purchased/save', _this.purchasedItem).then((response) => {
+          Loading.hide();
+          let resp = response.data;
+          if (resp.success) {
+            $("#form-modal").modal("hide");
+            _this.list();
+            Toast.success("save purchased item success！");
+          } else {
+            Toast.warning(resp.message)
+          }
+        })
+      },
     }
   }
 </script>

@@ -5,6 +5,7 @@ import com.profectus.business.dto.ProductDto;
 import com.profectus.business.model.Product;
 import com.profectus.business.service.ProductService;
 import com.profectus.business.utils.CopyUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +15,7 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
 
+    @Autowired
     public ProductServiceImpl(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }

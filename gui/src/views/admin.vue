@@ -397,7 +397,7 @@
           <li class="">
             <a href="#" class="dropdown-toggle">
               <i class="menu-icon fa fa-list"></i>
-              <span class="menu-text"> Calculate Profit </span>
+              <span class="menu-text"> Profit </span>
 
               <b class="arrow fa fa-angle-down"></b>
             </a>
@@ -406,10 +406,10 @@
 
             <ul class="submenu">
               <li class="" id="business-category-sidebar">
-                <router-link to="/business/category">
+                  <router-link to="/business/profit">
                   <i class="menu-icon fa fa-caret-right"></i>
-                  Purchased & Sold
-                </router-link>
+                  Profit Info
+                  </router-link>
 
                 <b class="arrow"></b>
               </li>

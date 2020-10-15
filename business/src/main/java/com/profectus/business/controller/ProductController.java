@@ -25,11 +25,9 @@ public class ProductController {
         this.productService = productService;
     }
 
-    /**
-     * 列表查询
-     */
     @GetMapping("/all")
     public ResponseDto all() {
+        System.out.println("get the request from GUI!");
         ResponseDto responseDto = new ResponseDto();
         List<ProductDto> productDtoList = productService.getproductList();
         responseDto.setContent(productDtoList);

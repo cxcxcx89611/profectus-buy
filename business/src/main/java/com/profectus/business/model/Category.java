@@ -23,8 +23,22 @@ public class Category {
     @Column(name="CATEGORY_NAME")
     private String categoryName;
 
-    @OneToMany(mappedBy = "category",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
-    private List<Product> productList;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
 
     @Override
     public String toString() {
@@ -34,7 +48,6 @@ public class Category {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", categoryName=").append(categoryName);
-        sb.append(", productList=").append(productList);
         sb.append("]");
         return sb.toString();
     }

@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface SoldService {
     List<SoldDto> getSoldList();
+
+    void save(SoldDto soldDto);
 }

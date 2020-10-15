@@ -1,5 +1,6 @@
 package com.profectus.business.dto;
 
+import com.profectus.business.model.Category;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,8 +13,7 @@ public class ProductDto {
 
     private String productName;
 
-    private int categoryId;
-
+    Category category;
 
     @Override
     public String toString() {
@@ -22,8 +22,8 @@ public class ProductDto {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", categoryId=").append(categoryId);
         sb.append(", productName=").append(productName);
+        sb.append(", Category=").append(category);
         sb.append("]");
         return sb.toString();
     }

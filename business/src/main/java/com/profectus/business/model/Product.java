@@ -7,11 +7,12 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.List;
 
+
+@Entity
+@Table(name="PRODUCT")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Entity
-@Table(name="PRODUCT")
 @SuppressWarnings("all")
 public class Product {
 
@@ -27,11 +28,51 @@ public class Product {
     @JoinColumn(name="category_id")
     private Category category;
 
-    @OneToMany(mappedBy = "product",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
-    private List<Purchased> purchasedList;
+//    @OneToMany(mappedBy = "product",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+//    private List<Purchased> purchasedList;
+//
+//    @OneToMany(mappedBy = "product",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+//    private List<Sold> soldList;
 
-    @OneToMany(mappedBy = "product",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
-    private List<Sold> soldList;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+//    public List<Purchased> getPurchasedList() {
+//        return purchasedList;
+//    }
+//
+//    public void setPurchasedList(List<Purchased> purchasedList) {
+//        this.purchasedList = purchasedList;
+//    }
+//
+//    public List<Sold> getSoldList() {
+//        return soldList;
+//    }
+//
+//    public void setSoldList(List<Sold> soldList) {
+//        this.soldList = soldList;
+//    }
 
     @Override
     public String toString() {

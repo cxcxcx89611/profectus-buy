@@ -7,7 +7,7 @@ Vue.config.productionTip = false;
 Vue.prototype.$ajax = axios;
 
 
-axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = false;
 
 
 new Vue({
@@ -15,4 +15,4 @@ new Vue({
   render: h => h(App),
 }).$mount('#app');
 
-console.log("环境：", process.env.NODE_ENV);
+console.log("环境：", process.env);

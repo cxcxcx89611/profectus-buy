@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface PurchasedService {
     List<PurchasedDto> getPurchasedList();
+
+    void save(PurchasedDto purchasedDto);
 }
