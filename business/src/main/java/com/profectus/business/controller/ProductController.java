@@ -29,7 +29,7 @@ public class ProductController {
     public ResponseDto all() {
         System.out.println("get the request from GUI!");
         ResponseDto responseDto = new ResponseDto();
-        List<ProductDto> productDtoList = productService.getproductList();
+        List<ProductDto> productDtoList = productService.getProductList();
         responseDto.setContent(productDtoList);
         return responseDto;
     }

@@ -28,6 +28,7 @@ public class PurchasedServiceImpl implements PurchasedService {
     @Override
     public List<PurchasedDto> getPurchasedList() {
         List<Purchased> purchasedList = purchasedRepository.findAll();
+        System.out.println(purchasedList);
         return CopyUtil.copyList(purchasedList, PurchasedDto.class);
     }
 

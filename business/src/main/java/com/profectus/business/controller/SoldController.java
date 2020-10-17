@@ -3,6 +3,7 @@ package com.profectus.business.controller;
 import com.profectus.business.dto.SoldDto;
 import com.profectus.business.dto.ResponseDto;
 import com.profectus.business.service.SoldService;
+import com.profectus.business.utils.ValidatorUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,10 @@ public class SoldController {
 
     @PostMapping("/save")
     public ResponseDto save(@RequestBody SoldDto soldDto) {
+
+        ValidatorUtil.require(soldDto.getSoldPrice(), "sold price");
+        ValidatorUtil.require(soldDto.getSoldQuantity(), "sold quantity");
+
         ResponseDto responseDto = new ResponseDto();
         System.out.println(soldDto);
         soldService.save(soldDto);

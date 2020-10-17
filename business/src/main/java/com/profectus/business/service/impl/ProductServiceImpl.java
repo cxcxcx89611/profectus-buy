@@ -22,7 +22,7 @@ public class ProductServiceImpl implements ProductService {
     
 
     @Override
-    public List<ProductDto> getproductList() {
+    public List<ProductDto> getProductList() {
         List<Product> productList = productRepository.findAll();
         return CopyUtil.copyList(productList, ProductDto.class);
     }

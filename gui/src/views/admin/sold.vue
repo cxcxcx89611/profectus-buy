@@ -34,6 +34,7 @@
         <td>{{soldItem.soldDate}}</td>
         <td>{{soldItem.soldPrice}}</td>
         <td>{{soldItem.soldQuantity}}</td>
+        <td>{{soldItem.soldUnitPrice}}</td>
       </tr>
       </tbody>
     </table>

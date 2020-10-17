@@ -114,6 +114,7 @@
           let resp = response.data;
           _this.products = resp.content;
         })
+
       },
 
       add() {
@@ -130,6 +131,7 @@
           Loading.hide();
           let resp = response.data;
           _this.purchasedItems = resp.content;
+          console.log(_this.purchasedItems);
         })
         console.log("send request end");
       },

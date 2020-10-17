@@ -12,7 +12,7 @@ FOREIGN KEY(CATEGORY_ID) REFERENCES CATEGORY(ID)
 create table if not exists PURCHASED(
 ID int primary key auto_increment,
 purchased_quantity int,
-purchased_price int,
+purchased_price float,
 purchased_date date,
 product_id int,
 FOREIGN KEY(PRODUCT_ID) REFERENCES PRODUCT(ID)
@@ -21,7 +21,7 @@ FOREIGN KEY(PRODUCT_ID) REFERENCES PRODUCT(ID)
 create table if not exists sold(
 ID int primary key auto_increment,
 sold_quantity int,
-sold_price int,
+sold_price float,
 sold_date date,
 product_id int,
 FOREIGN KEY(PRODUCT_ID) REFERENCES PRODUCT(ID)

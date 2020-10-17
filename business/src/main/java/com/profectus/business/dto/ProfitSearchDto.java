@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -12,17 +13,65 @@ import java.util.List;
 @Data
 public class ProfitSearchDto {
 
-    private List<ProductDto> productDtoList;
+    private String productList;
 
-    private List<CategoryDto> categoryDtoList;
+    private String categoryList;
 
-    private Date searchFromDate;
+    private LocalDate searchFromDate;
 
-    private Date searchToDate;
+    private LocalDate searchToDate;
 
-    private int priceFrom;
+    private Integer priceFrom;
 
-    private int priceTo;
+    private Integer priceTo;
+
+    public String getProductList() {
+        return productList;
+    }
+
+    public void setProductList(String productList) {
+        this.productList = productList;
+    }
+
+    public String getCategoryList() {
+        return categoryList;
+    }
+
+    public void setCategoryList(String categoryList) {
+        this.categoryList = categoryList;
+    }
+
+    public LocalDate getSearchFromDate() {
+        return searchFromDate;
+    }
+
+    public void setSearchFromDate(LocalDate searchFromDate) {
+        this.searchFromDate = searchFromDate;
+    }
+
+    public LocalDate getSearchToDate() {
+        return searchToDate;
+    }
+
+    public void setSearchToDate(LocalDate searchToDate) {
+        this.searchToDate = searchToDate;
+    }
+
+    public Integer getPriceFrom() {
+        return priceFrom;
+    }
+
+    public void setPriceFrom(int priceFrom) {
+        this.priceFrom = priceFrom;
+    }
+
+    public Integer getPriceTo() {
+        return priceTo;
+    }
+
+    public void setPriceTo(int priceTo) {
+        this.priceTo = priceTo;
+    }
 
     @Override
     public String toString() {
@@ -30,8 +79,8 @@ public class ProfitSearchDto {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
-        sb.append(", productDtoList=").append(productDtoList);
-        sb.append(", categoryDtoList=").append(categoryDtoList);
+        sb.append(", productDtoList=").append(productList);
+        sb.append(", categoryDtoList=").append(categoryList);
         sb.append(", searchFromDate=").append(searchFromDate);
         sb.append(", searchToDate=").append(searchToDate);
         sb.append(", priceFrom=").append(priceFrom);

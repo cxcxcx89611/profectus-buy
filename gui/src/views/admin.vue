@@ -13,7 +13,7 @@
         </button>
 
         <div class="navbar-header pull-left">
-          <a href="index.html" class="navbar-brand">
+          <a class="navbar-brand">
             <small>
               <i class="fa fa-leaf"></i>
               Profectus Sell Platform
@@ -355,7 +355,7 @@
 
         <ul class="nav nav-list">
           <li class="" id="welcome-sidebar">
-            <router-link to="/welcome">
+            <router-link to="/business/purchased">
               <i class="menu-icon fa fa-tachometer"></i>
               <span class="menu-text"> </span>
             </router-link>
