@@ -23,30 +23,11 @@ public class Category {
     @Column(name="CATEGORY_NAME")
     private String categoryName;
 
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getCategoryName() {
-        return categoryName;
-    }
-
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
+        sb.append(" [");        sb.append("id=").append(id);
         sb.append(", categoryName=").append(categoryName);
         sb.append("]");
         return sb.toString();

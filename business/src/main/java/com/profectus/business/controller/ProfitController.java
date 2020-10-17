@@ -26,7 +26,7 @@ public class ProfitController {
     public ResponseDto calculate(@RequestBody ProfitSearchDto ProfitSearchDto) {
         ResponseDto responseDto = new ResponseDto();
         System.out.println("get DTO!" + ProfitSearchDto);
-        String profitString = "$ " + profitService.search(ProfitSearchDto);
+        String profitString = "$ " + profitService.profit(ProfitSearchDto);
         responseDto.setContent(profitString);
         return responseDto;
     }

@@ -19,13 +19,12 @@ public interface PurchasedRepository extends JpaRepository<Purchased, Integer> {
     @Query(value = "insert into purchased(purchased_quantity,purchased_price,purchased_date,product_id) values(?1,?2, ?3, ?4)",nativeQuery = true)
     int insertPurchasedWithProduct(int purchased_quantity, int purchased_price, LocalDate purchased_date, int product_id);
 
-    @Query(value = "select truncate((sum(p.purchased_price)/sum(p.purchased_quantity)),2) from purchased p where  " +
+    @Query(value = "select p.product_id, truncate((sum(p.purchased_price)/sum(p.purchased_quantity)),10) from purchased p where  " +
             " ( p.product_id in (?1) or ?1 IS NULL)" +
-            " and ( p.purchased_date >= ?2 or ?2 IS NULL)" +
-            " and ( p.purchased_date <= ?3 or ?3 IS NULL)" +
-            " and ( p.purchased_price >= ?4 or ?4 IS NULL)" +
-            " and ( p.purchased_price <= ?5 or ?5 IS NULL)",nativeQuery = true)
-    Float calculateUnitPurchasedPriceByConditions(List<Integer> productIdList, LocalDate purchasedFromDate, LocalDate purchasedToDate, Integer purchasedFromPrice, Integer purchasedToPrice);
+            " and ( p.purchased_date <= ?2 or ?2 IS NULL)" +
+            " and ( p.purchased_price >= ?3 or ?3 IS NULL)" +
+            " and ( p.purchased_price <= ?4 or ?4 IS NULL) group by p.product_id",nativeQuery = true)
+    List<Object[]> calculateUnitPurchasedPriceByConditions(List<Integer> productIdList, LocalDate purchasedToDate, Integer purchasedFromPrice, Integer purchasedToPrice);
 
 }
 

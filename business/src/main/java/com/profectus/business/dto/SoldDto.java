@@ -29,54 +29,6 @@ public class SoldDto {
 
     private int categoryId;
 
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public int getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public int getSoldQuantity() {
-        return soldQuantity;
-    }
-
-    public void setSoldQuantity(int soldQuantity) {
-        this.soldQuantity = soldQuantity;
-    }
-
-    public int getSoldPrice() {
-        return soldPrice;
-    }
-
-    public void setSoldPrice(int soldPrice) {
-        this.soldPrice = soldPrice;
-    }
-
     @JsonFormat(pattern="yyyy-MM-dd")
     public LocalDate getSoldDate() {
         return soldDate;
@@ -90,9 +42,7 @@ public class SoldDto {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
+        sb.append(" [");        sb.append("id=").append(id);
         sb.append(", Product=").append(product);
         sb.append(", soldQuantity=").append(soldQuantity);
         sb.append(", soldPrice=").append(soldPrice);

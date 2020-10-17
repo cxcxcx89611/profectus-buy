@@ -1,5 +1,5 @@
 insert into category values (1, 'Dairy');
-insert into category values (2, 'Vegetable');
+insert into category values (2, 'Fruit');
 
 insert into product values (1, 'Milk', 1);
 insert into product values (2, 'Cream', 1);

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -28,59 +29,18 @@ public class Product {
     @JoinColumn(name="category_id")
     private Category category;
 
+
 //    @OneToMany(mappedBy = "product",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 //    private List<Purchased> purchasedList;
 //
 //    @OneToMany(mappedBy = "product",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 //    private List<Sold> soldList;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-//    public List<Purchased> getPurchasedList() {
-//        return purchasedList;
-//    }
-//
-//    public void setPurchasedList(List<Purchased> purchasedList) {
-//        this.purchasedList = purchasedList;
-//    }
-//
-//    public List<Sold> getSoldList() {
-//        return soldList;
-//    }
-//
-//    public void setSoldList(List<Sold> soldList) {
-//        this.soldList = soldList;
-//    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
+        sb.append(" [");        sb.append("id=").append(id);
         sb.append(", Category=").append(category.toString());
         sb.append(", productName=").append(productName);
         sb.append("]");

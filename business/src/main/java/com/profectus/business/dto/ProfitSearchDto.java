@@ -25,45 +25,7 @@ public class ProfitSearchDto {
 
     private Integer priceTo;
 
-    public String getProductList() {
-        return productList;
-    }
 
-    public void setProductList(String productList) {
-        this.productList = productList;
-    }
-
-    public String getCategoryList() {
-        return categoryList;
-    }
-
-    public void setCategoryList(String categoryList) {
-        this.categoryList = categoryList;
-    }
-
-    public LocalDate getSearchFromDate() {
-        return searchFromDate;
-    }
-
-    public void setSearchFromDate(LocalDate searchFromDate) {
-        this.searchFromDate = searchFromDate;
-    }
-
-    public LocalDate getSearchToDate() {
-        return searchToDate;
-    }
-
-    public void setSearchToDate(LocalDate searchToDate) {
-        this.searchToDate = searchToDate;
-    }
-
-    public Integer getPriceFrom() {
-        return priceFrom;
-    }
-
-    public void setPriceFrom(int priceFrom) {
-        this.priceFrom = priceFrom;
-    }
 
     public Integer getPriceTo() {
         return priceTo;
@@ -78,7 +40,7 @@ public class ProfitSearchDto {
         StringBuilder sb = new StringBuilder();
         sb.append(getClass().getSimpleName());
         sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
+
         sb.append(", productDtoList=").append(productList);
         sb.append(", categoryDtoList=").append(categoryList);
         sb.append(", searchFromDate=").append(searchFromDate);

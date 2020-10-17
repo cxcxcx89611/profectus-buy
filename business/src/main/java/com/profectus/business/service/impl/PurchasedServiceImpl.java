@@ -2,16 +2,14 @@ package com.profectus.business.service.impl;
 
 import com.profectus.business.dao.PurchasedRepository;
 import com.profectus.business.dto.PurchasedDto;
-import com.profectus.business.model.Product;
+
 import com.profectus.business.model.Purchased;
 import com.profectus.business.service.PurchasedService;
 import com.profectus.business.utils.CopyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Service
@@ -34,6 +32,7 @@ public class PurchasedServiceImpl implements PurchasedService {
 
 
     @Transactional
+    @Override
     public void save(PurchasedDto purchasedDto) {
         Purchased purchased = new Purchased();
         purchased.setPurchasedDate(purchasedDto.getPurchasedDate());

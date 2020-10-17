@@ -32,8 +32,7 @@ public class ProfitServiceImpl implements ProfitService {
     }
 
     @Override
-    public String search(ProfitSearchDto profitSearchDto) {
-
+    public String profit(ProfitSearchDto profitSearchDto) {
         String categroyString = profitSearchDto.getCategoryList();
         String productString = profitSearchDto.getProductList();
         String profit;
@@ -42,6 +41,10 @@ public class ProfitServiceImpl implements ProfitService {
             String[] categorys = categroyString.split("\\s+");
             List<String> categoryNameList = Arrays.asList(categorys);
             List<Integer> productIdList = productRepository.findIdByCategoryNames(categoryNameList);
+            System.out.println("ID list!! " + productIdList);
+            if (productIdList.size() == 0) {
+                return profit = "No such categories : " + categroyString + " at DB!";
+            }
             profit = getProfit(productIdList, profitSearchDto.getSearchFromDate(),
                     profitSearchDto.getSearchToDate(), profitSearchDto.getPriceFrom(), profitSearchDto.getPriceTo());
         } else {
@@ -50,10 +53,15 @@ public class ProfitServiceImpl implements ProfitService {
                 String[] products = productString.split("\\s+");
                 List<String> productNameList = Arrays.asList(products);
                 List<Integer> productIdList = productRepository.findIdByProductNames(productNameList);
+                if (productIdList.size() == 0) {
+                    return profit = "Your searched product list has no product existing at DB!";
+                } else if (productIdList.size() != products.length) {
+                    return profit = "Your searched product list contains product which not existing in System, please check!";
+                }
                 profit = getProfit(productIdList, profitSearchDto.getSearchFromDate(),
                         profitSearchDto.getSearchToDate(), profitSearchDto.getPriceFrom(), profitSearchDto.getPriceTo());
             } else {
-                // No input product list
+                // No input product list, will calculate all product profit
                 profit = getProfit(null, profitSearchDto.getSearchFromDate(),
                         profitSearchDto.getSearchToDate(), profitSearchDto.getPriceFrom(), profitSearchDto.getPriceTo());
             }
@@ -61,18 +69,28 @@ public class ProfitServiceImpl implements ProfitService {
         return profit;
     }
 
-    public String getProfit( List<Integer> productIdList, LocalDate searchFromDate,
+    public String getProfit(List<Integer> productIdList, LocalDate searchFromDate,
                             LocalDate searchToDate, Integer priceFrom, Integer priceTo) {
-        Float unitPurchasedPrice = purchasedRepository.calculateUnitPurchasedPriceByConditions(productIdList,
-                searchFromDate, searchToDate, priceFrom, priceTo);
-        List<Object[]> resultList = soldRepository.calculateTotalSoldPriceQuantityByConditions(productIdList,
-                searchFromDate, searchToDate, priceFrom, priceTo);
-        Float soldTotalPrice = Float.valueOf(resultList.get(0)[0].toString()) ;
-        System.out.println("unitPurchasedPrice:" + unitPurchasedPrice);
-        System.out.println("soldTotalPrice:" + soldTotalPrice);
-        Integer soldTotalQuantity = Integer.valueOf(resultList.get(0)[1].toString());
-        System.out.println("soldTotalQuantity:" + soldTotalQuantity);
-        Float profit = Float.valueOf(soldTotalPrice - unitPurchasedPrice*soldTotalQuantity);
+        List<Object[]> productUnitPriceList = purchasedRepository.calculateUnitPurchasedPriceByConditions(productIdList, searchToDate, priceFrom, priceTo);
+        List<Object[]> productTotalSoldQuantiyList = soldRepository.calculateTotalSoldPriceQuantityByConditions(productIdList,
+                searchFromDate, searchToDate);
+        Float profit = new Float(0.00);
+        for (Object[] a : productUnitPriceList) {
+            for (Object[] b : productTotalSoldQuantiyList) {
+                if (a[0] == b[0]) {
+                    Float productUnitPurPrice = Float.valueOf(a[1].toString());
+                    Float productTotalSoldPrice = Float.valueOf(b[1].toString());
+                    Float productTotalSoldQuantity = Float.valueOf(b[2].toString());
+                    Float productProfit = productTotalSoldPrice - productTotalSoldQuantity * productUnitPurPrice;
+                    profit = profit + productProfit;
+                    System.out.println("product name :" + a[0] +
+                            " product unit price: " + productUnitPurPrice +
+                            " product total sold price" + productTotalSoldPrice +
+                            " product total sold quantity" + productTotalSoldQuantity +
+                            " product profit " + productProfit);
+                }
+            }
+        }
         DecimalFormat df = new DecimalFormat();
         df.setMaximumFractionDigits(2);
         return df.format(profit);

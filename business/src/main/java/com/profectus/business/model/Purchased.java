@@ -34,54 +34,11 @@ public class Purchased {
     @JoinColumn(name="product_id")
     private Product product;
 
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getPurchasedQuantity() {
-        return purchasedQuantity;
-    }
-
-    public void setPurchasedQuantity(int purchasedQuantity) {
-        this.purchasedQuantity = purchasedQuantity;
-    }
-
-    public int getPurchasedPrice() {
-        return purchasedPrice;
-    }
-
-    public void setPurchasedPrice(int purchasedPrice) {
-        this.purchasedPrice = purchasedPrice;
-    }
-
-    public LocalDate getPurchasedDate() {
-        return purchasedDate;
-    }
-
-    public void setPurchasedDate(LocalDate purchasedDate) {
-        this.purchasedDate = purchasedDate;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
+        sb.append(" [");        sb.append("id=").append(id);
         sb.append(", Product=").append(product.toString());
         sb.append(", purchasedQuantity=").append(purchasedQuantity);
         sb.append(", purchasedPrice=").append(purchasedPrice);
