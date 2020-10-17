@@ -6,10 +6,13 @@
           <div class="form-group">
             <label class="col-sm-6 control-label">
               <p align="left">
-                Assumption: 1. So called "profit" means that the target products (obtained by searching given purchased price range,
-                category name list and product name list) total sold price(during give date range ) minus total purchased price(during give date range).
-                2. Users search category name indicate user want to get all the products under this category.
-                3. Each product sold record must have at least one its own purchased record
+                Assumption:
+                <br>1. So called "profit" means that the sum of each product profit. Each product profit means total sold
+                price minus total purchased price(can be obtained by sold quantity multiply purchased unit price).
+                product can be filtered by category, product name, date range and purchased price range.<br/>
+                <br>2. Users search category name indicate user want to get all the products under this category.<br/>
+                <br>3. If both category names and product names appeared in search conditions, product names will be
+                ignored. Only category name will be used to search products.<br/>
               </p>
             </label>
           </div>
