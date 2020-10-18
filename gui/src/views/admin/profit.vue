@@ -13,6 +13,7 @@
                 <br>2. Users search category name indicate user want to get all the products under this category.<br/>
                 <br>3. If both category names and product names appeared in search conditions, product names will be
                 ignored. Only category name will be used to search products.<br/>
+                <br>4. Please note search field is case sensitive<br/>
               </p>
             </label>
           </div>
