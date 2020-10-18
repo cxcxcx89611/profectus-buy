@@ -27,7 +27,6 @@ public class ProductController {
 
     @GetMapping("/all")
     public ResponseDto all() {
-        System.out.println("get the request from GUI!");
         ResponseDto responseDto = new ResponseDto();
         List<ProductDto> productDtoList = productService.getProductList();
         responseDto.setContent(productDtoList);

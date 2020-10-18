@@ -15,17 +15,17 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class PurchasedDto {
 
-    private int id;
+    private Integer id;
 
     private Product product;
 
     private String productName;
 
-    private int categoryId;
+    private Integer categoryId;
 
-    private int purchasedQuantity;
+    private Integer purchasedQuantity;
 
-    private int purchasedPrice;
+    private Integer purchasedPrice;
 
     private LocalDate purchasedDate;
 

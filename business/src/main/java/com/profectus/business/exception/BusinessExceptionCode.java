@@ -1,10 +1,9 @@
 package com.profectus.business.exception;
 
 public enum BusinessExceptionCode {
-    PURCHASED_QUANTITY_ERROR("purchased quantity should be number"),
-    SOLD_QUANTITY_ERROR("sold quantity should be number"),
-    PURCHASED_PRICE_ERROR("Price should be number"),
-    SOLD_PRICE_ERROR("Sold price should be number"),
+    NO_PARTIAL_PRODUCT_ERROR("Your searched product list contains product which not existing in System, please check!"),
+    NO_SUCH_PRODUCTS_ERROR("Your searched product list has no product existing at DB!"),
+    NO_SUCH_CATEGORY_ERROR("No such category in DB"),
     ;
 
     private String desc;

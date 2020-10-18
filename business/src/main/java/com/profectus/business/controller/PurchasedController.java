@@ -37,11 +37,13 @@ public class PurchasedController {
     @PostMapping("/save")
     public ResponseDto save(@RequestBody PurchasedDto purchasedDto) {
 
+        ValidatorUtil.require(purchasedDto.getProduct(), "purchased product name");
+        ValidatorUtil.require(purchasedDto.getPurchasedDate(), "purchased date");
         ValidatorUtil.require(purchasedDto.getPurchasedPrice(), "purchased price");
         ValidatorUtil.require(purchasedDto.getPurchasedQuantity(), "purchased quantity");
 
+
         ResponseDto responseDto = new ResponseDto();
-        System.out.println("get DTO!" + purchasedDto);
         purchasedService.save(purchasedDto);
         responseDto.setContent(purchasedDto);
         return responseDto;

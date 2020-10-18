@@ -25,7 +25,6 @@ public class ProfitController {
     @PostMapping("/calculate")
     public ResponseDto calculate(@RequestBody ProfitSearchDto ProfitSearchDto) {
         ResponseDto responseDto = new ResponseDto();
-        System.out.println("get DTO!" + ProfitSearchDto);
         String profitString = "$ " + profitService.profit(ProfitSearchDto);
         responseDto.setContent(profitString);
         return responseDto;

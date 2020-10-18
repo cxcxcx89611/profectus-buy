@@ -11,7 +11,7 @@ public class ValidatorUtil {
      */
     public static void require(Object str, String fieldName) {
         if (StringUtils.isEmpty(str)) {
-            throw new ValidatorException(fieldName + "can not be null");
+            throw new ValidatorException(fieldName + " can not be null");
         }
     }
 

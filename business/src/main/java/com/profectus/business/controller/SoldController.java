@@ -27,7 +27,6 @@ public class SoldController {
 
     @GetMapping("/all")
     public ResponseDto all() {
-        System.out.println("get the request from GUI!");
         ResponseDto responseDto = new ResponseDto();
         List<SoldDto> soldDtoList = soldService.getSoldList();
         responseDto.setContent(soldDtoList);
@@ -37,11 +36,12 @@ public class SoldController {
     @PostMapping("/save")
     public ResponseDto save(@RequestBody SoldDto soldDto) {
 
+        ValidatorUtil.require(soldDto.getProduct(), "sold product name");
+        ValidatorUtil.require(soldDto.getSoldDate(), "sold date");
         ValidatorUtil.require(soldDto.getSoldPrice(), "sold price");
         ValidatorUtil.require(soldDto.getSoldQuantity(), "sold quantity");
 
         ResponseDto responseDto = new ResponseDto();
-        System.out.println(soldDto);
         soldService.save(soldDto);
         responseDto.setContent(soldDto);
         return responseDto;

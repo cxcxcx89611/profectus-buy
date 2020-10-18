@@ -1,11 +1,16 @@
 package com.profectus.business.service.impl;
 
+import com.profectus.business.controller.CategoryController;
 import com.profectus.business.dao.ProductRepository;
 import com.profectus.business.dao.PurchasedRepository;
 import com.profectus.business.dao.SoldRepository;
 import com.profectus.business.dto.ProfitSearchDto;
+import com.profectus.business.exception.BusinessException;
+import com.profectus.business.exception.BusinessExceptionCode;
 import com.profectus.business.service.ProfitService;
 import org.apache.tomcat.jni.Local;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -16,6 +21,8 @@ import java.util.*;
 
 @Service
 public class ProfitServiceImpl implements ProfitService {
+
+    private static final Logger LOG = LoggerFactory.getLogger(CategoryController.class);
 
     private final PurchasedRepository purchasedRepository;
 
@@ -41,9 +48,8 @@ public class ProfitServiceImpl implements ProfitService {
             String[] categorys = categroyString.split("\\s+");
             List<String> categoryNameList = Arrays.asList(categorys);
             List<Integer> productIdList = productRepository.findIdByCategoryNames(categoryNameList);
-            System.out.println("ID list!! " + productIdList);
             if (productIdList.size() == 0) {
-                return profit = "No such categories : " + categroyString + " at DB!";
+                throw new BusinessException(BusinessExceptionCode.NO_SUCH_CATEGORY_ERROR);
             }
             profit = getProfit(productIdList, profitSearchDto.getSearchFromDate(),
                     profitSearchDto.getSearchToDate(), profitSearchDto.getPriceFrom(), profitSearchDto.getPriceTo());
@@ -54,9 +60,9 @@ public class ProfitServiceImpl implements ProfitService {
                 List<String> productNameList = Arrays.asList(products);
                 List<Integer> productIdList = productRepository.findIdByProductNames(productNameList);
                 if (productIdList.size() == 0) {
-                    return profit = "Your searched product list has no product existing at DB!";
+                    throw new BusinessException(BusinessExceptionCode.NO_SUCH_PRODUCTS_ERROR);
                 } else if (productIdList.size() != products.length) {
-                    return profit = "Your searched product list contains product which not existing in System, please check!";
+                    throw new BusinessException(BusinessExceptionCode.NO_PARTIAL_PRODUCT_ERROR);
                 }
                 profit = getProfit(productIdList, profitSearchDto.getSearchFromDate(),
                         profitSearchDto.getSearchToDate(), profitSearchDto.getPriceFrom(), profitSearchDto.getPriceTo());
@@ -83,7 +89,7 @@ public class ProfitServiceImpl implements ProfitService {
                     Float productTotalSoldQuantity = Float.valueOf(b[2].toString());
                     Float productProfit = productTotalSoldPrice - productTotalSoldQuantity * productUnitPurPrice;
                     profit = profit + productProfit;
-                    System.out.println("product name :" + a[0] +
+                    LOG.info("product name :" + a[0] +
                             " product unit price: " + productUnitPurPrice +
                             " product total sold price" + productTotalSoldPrice +
                             " product total sold quantity" + productTotalSoldQuantity +

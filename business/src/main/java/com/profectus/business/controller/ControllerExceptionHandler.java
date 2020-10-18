@@ -21,7 +21,7 @@ public class ControllerExceptionHandler {
         ResponseDto responseDto = new ResponseDto();
         responseDto.setSuccess(false);
         LOG.warn(e.getMessage());
-        responseDto.setMessage("request parameters exception！");
+        responseDto.setMessage(e.getMessage());
         return responseDto;
     }
 

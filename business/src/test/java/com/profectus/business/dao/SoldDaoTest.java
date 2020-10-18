@@ -1,7 +1,7 @@
 package com.profectus.business.dao;
 
 
-import com.profectus.business.model.Product;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

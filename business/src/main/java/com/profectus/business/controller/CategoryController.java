@@ -28,7 +28,6 @@ public class CategoryController {
 
     @GetMapping("/all")
     public ResponseDto all() {
-        System.out.println("get the request from GUI!");
         ResponseDto responseDto = new ResponseDto();
         List<CategoryDto> categoryDtoList = categoryService.getCategoryList();
         responseDto.setContent(categoryDtoList);

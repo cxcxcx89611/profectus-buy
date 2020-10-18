@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,15 +18,15 @@ public class SoldDto {
 
     private Product product;
 
-    private int soldQuantity;
+    private Integer soldQuantity;
 
-    private int soldPrice;
+    private Integer soldPrice;
 
     private LocalDate soldDate;
 
     private String productName;
 
-    private int categoryId;
+    private Integer categoryId;
 
     @JsonFormat(pattern="yyyy-MM-dd")
     public LocalDate getSoldDate() {

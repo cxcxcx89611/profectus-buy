@@ -2,6 +2,7 @@ package com.profectus.business.service;
 
 
 import com.profectus.business.dto.ProfitSearchDto;
+import com.profectus.business.exception.BusinessException;
 import com.profectus.business.service.impl.ProfitServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -40,15 +41,13 @@ public class ProfitServiceTest {
 
     /*
      * test case 1.2: :  calculate profit of all products belongs to non exist Category
-     * based on test data.sql,  expect value is No such categories : Tool at DB!
+     * based on test data.sql,  expect value is Buesiness Exception
      */
-    @Test
+    @Test(expected = BusinessException.class)
     public void getProfitTestWithNonExistCategory() {
         LocalDate date = LocalDate.now();
         ProfitSearchDto profitDto = new ProfitSearchDto(null, "Tool",null, null, null, null);
         String profitAcutal = profitService.profit(profitDto);
-        String profitExpect = "No such categories : Tool at DB!";
-        assertEquals(profitExpect, profitAcutal);
     }
     /*
      * test case 2.1 :  calculate profit by both Category and Product list,
@@ -79,28 +78,25 @@ public class ProfitServiceTest {
 
     /*
      * test case 2.3: :  calculate profit of non existing product list: Pear
-     * based on test data.sql,  expect value is our searched product list has no product existing at DB!
+     * based on test data.sql,  expect value is BusinessException
      */
-    @Test
+    @Test(expected = BusinessException.class)
     public void testProfitTestWithNonExistProductList() {
         LocalDate date = LocalDate.now();
         ProfitSearchDto profitDto = new ProfitSearchDto("Pear", null,null, null, null, null);
         String profitAcutal = profitService.profit(profitDto);
-        String profitExpect = "Your searched product list has no product existing at DB!";
-        assertEquals(profitExpect, profitAcutal);
+
     }
 
     /*
      * test case 2.4: :  calculate profit of partial non existing product list: Pear Banana
-     * based on test data.sql,  expect value is Your searched product list contains product which not existing in System, please check!
+     * based on test data.sql,  expect value is BusinessException
      */
-    @Test
+    @Test(expected = BusinessException.class)
     public void testProfitTestWithPartialNonExistProductList() {
         LocalDate date = LocalDate.now();
         ProfitSearchDto profitDto = new ProfitSearchDto("Pear Bananas", null,null, null, null, null);
         String profitAcutal = profitService.profit(profitDto);
-        String profitExpect = "Your searched product list contains product which not existing in System, please check!";
-        assertEquals(profitExpect, profitAcutal);
     }
 
     /*

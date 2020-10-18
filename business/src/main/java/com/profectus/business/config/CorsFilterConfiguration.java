@@ -8,7 +8,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 public class CorsFilterConfiguration extends WebMvcConfigurationSupport {
     @Override
     protected void addCorsMappings(CorsRegistry registry) {
-        System.out.println(123456);
         registry.addMapping("/**").
                 allowCredentials(false)
                 .allowedHeaders("*")
