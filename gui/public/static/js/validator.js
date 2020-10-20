@@ -10,7 +10,9 @@ Validator = {
 
   length: function (value, text, min, max) {
     var regPos = /^[0-9]+.?[0-9]*/;
-    if (regPos.test(value)) {
+    if (regPos.test(value) && !Tool.isEmpty(value)) {
+      return true;
+    } else if (Tool.isEmpty(value)) {
       return true;
     } else {
       Toast.warning(text + " must be valid number!");

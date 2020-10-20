@@ -1,4 +1,4 @@
-<template>
+`<template>
   <div>
     <div class="modal-content" width>
       <div class="modal-body">
@@ -7,7 +7,8 @@
             <label class="col-sm-6 control-label">
               <p align="left">
                 Assumption:
-                <br>1. So called "profit" means that the sum of each product profit. Each product profit means total sold
+                <br>1. So called "profit" means that the sum of each product profit. Each product profit means total
+                sold
                 price minus total purchased price(can be obtained by sold quantity multiply purchased unit price).
                 product can be filtered by category, product name, date range and purchased price range.<br/>
                 <br>2. Users search category name indicate user want to get all the products under this category.<br/>
@@ -84,12 +85,14 @@
     methods: {
       search() {
         let _this = this;
+      
         if (1 != 1
-          || !Validator.length(_this.profitSearchVo.priceFrom, "Price From",  1, 6)
-          || !Validator.length(_this.profitSearchVo.priceTo, "Price To", 1, 6)
+          || !Validator.length(_this.profitSearchVo.priceFrom, "Price From", 0, 6)
+          || !Validator.length(_this.profitSearchVo.priceTo, "Price To", 0, 6)
         ) {
           return;
         }
+
         Loading.show();
         console.log(_this.profitSearchVo);
         _this.$ajax.post(process.env.VUE_APP_SERVER + '/profectus-buy/business/profit/calculate', _this.profitSearchVo).then((response) => {
@@ -105,4 +108,4 @@
       }
     }
   }
-</script>
+</script>`
