@@ -134,6 +134,12 @@
       },
       save() {
         let _this = this;
+        if (1 != 1
+          || !Validator.length(_this.soldItem.soldPrice, "Price",  1, 6)
+          || !Validator.length(_this.soldItem.soldQuantity, "Quantity", 1, 6)
+        ) {
+          return;
+        }
         Loading.show();
         _this.$ajax.post(process.env.VUE_APP_SERVER + '/profectus-buy/business/sold/save', _this.soldItem).then((response) => {
           Loading.hide();

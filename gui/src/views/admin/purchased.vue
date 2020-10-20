@@ -138,6 +138,13 @@
 
       save() {
         let _this = this;
+        if (1 != 1
+          || !Validator.length(_this.purchasedItem.purchasedPrice, "Price",  1, 6)
+          || !Validator.length(_this.purchasedItem.purchasedQuantity, "Quantity", 1, 6)
+        ) {
+          return;
+        }
+
         Loading.show();
         _this.$ajax.post(process.env.VUE_APP_SERVER + '/profectus-buy/business/purchased/save', _this.purchasedItem).then((response) => {
           Loading.hide();

@@ -84,6 +84,12 @@
     methods: {
       search() {
         let _this = this;
+        if (1 != 1
+          || !Validator.length(_this.profitSearchVo.priceFrom, "Price From",  1, 6)
+          || !Validator.length(_this.profitSearchVo.priceTo, "Price To", 1, 6)
+        ) {
+          return;
+        }
         Loading.show();
         console.log(_this.profitSearchVo);
         _this.$ajax.post(process.env.VUE_APP_SERVER + '/profectus-buy/business/profit/calculate', _this.profitSearchVo).then((response) => {
