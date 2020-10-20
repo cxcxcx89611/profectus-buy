@@ -42,6 +42,8 @@ public class ProfitServiceImpl implements ProfitService {
     public String profit(ProfitSearchDto profitSearchDto) {
         String categroyString = profitSearchDto.getCategoryList();
         String productString = profitSearchDto.getProductList();
+        Integer priceFrom = profitSearchDto.getPriceFrom();
+        Integer priceTo = profitSearchDto.getPriceTo();
         String profit;
         //if category list is not null,  get all the products of this category
         if (!StringUtils.isEmpty(categroyString)) {

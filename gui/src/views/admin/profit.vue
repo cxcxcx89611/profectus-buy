@@ -1,4 +1,4 @@
-`<template>
+<template>
   <div>
     <div class="modal-content" width>
       <div class="modal-body">
@@ -64,6 +64,7 @@
       </div>
       <div class="modal-footer">
         <button v-on:click="search()" type="button" class="btn btn-primary">Search</button>
+        <button v-on:click="refresh()" type="button" class="btn btn-primary">Refresh</button>
       </div>
     </div>
   </div>
@@ -83,16 +84,23 @@
 
     },
     methods: {
+      refresh() {
+        this.$router.go(0);
+      },
       search() {
         let _this = this;
-      
         if (1 != 1
-          || !Validator.length(_this.profitSearchVo.priceFrom, "Price From", 0, 6)
-          || !Validator.length(_this.profitSearchVo.priceTo, "Price To", 0, 6)
+          || !Validator.length(_this.profitSearchVo.priceFrom, "Price From", 1, 6)
+          || !Validator.length(_this.profitSearchVo.priceTo, "Price To", 1, 6)
         ) {
           return;
         }
-
+        if(_this.profitSearchVo.priceFrom == "") {
+          _this.profitSearchVo.priceFrom = undefined;
+        }
+        if(_this.profitSearchVo.priceTo == "") {
+          _this.profitSearchVo.priceTo = undefined;
+        }
         Loading.show();
         console.log(_this.profitSearchVo);
         _this.$ajax.post(process.env.VUE_APP_SERVER + '/profectus-buy/business/profit/calculate', _this.profitSearchVo).then((response) => {
@@ -108,4 +116,4 @@
       }
     }
   }
-</script>`
+</script>
